@@ -59,13 +59,39 @@
             Console.Write($"NWD wynosi {a}");
         }
 
-
+        static void zad43_los()
+        {
+            Random rnd = new Random();
+            int licznik = 1;
+            int x = rnd.Next(2, 10);
+            Console.WriteLine("Zgadnij liczbę: ");
+            while(true)
+            {
+                int a = Convert.ToInt32(Console.ReadLine());
+                if (a < x)
+                {
+                    Console.WriteLine("Za mało!");
+                    licznik++;
+                }
+                else if (a > x)
+                {
+                    Console.WriteLine("Za dużo!");
+                    licznik++;
+                }
+                else
+                {
+                    Console.Write($"Dobrze! Zgadłeś za {licznik} razem");
+                    break;
+                }
+            }
+        }
 
         static void Main(string[] args)
         {
             //zad41_srednia();
             //zad42_lokata();
-            zad45_nwd();
+            //zad43_los();
+            //zad45_nwd();
         }
     }
 }
