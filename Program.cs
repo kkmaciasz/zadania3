@@ -1,4 +1,6 @@
-﻿namespace cwiczenia3
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace cwiczenia3
 {
     class Program
     {
@@ -39,6 +41,53 @@
             Console.WriteLine($"Wartość inwestycji po {lata} latach: {Y:N}");
         }
 
+        static void zad43_los()
+        {
+            Random rnd = new Random();
+            int licznik = 1;
+            int x = rnd.Next(2, 10);
+            Console.WriteLine("Zgadnij liczbę: ");
+            while (true)
+            {
+                int a = Convert.ToInt32(Console.ReadLine());
+                if (a < x)
+                {
+                    Console.WriteLine("Za mało!");
+                    licznik++;
+                }
+                else if (a > x)
+                {
+                    Console.WriteLine("Za dużo!");
+                    licznik++;
+                }
+                else
+                {
+                    Console.Write($"Dobrze! Zgadłeś za {licznik} razem");
+                    break;
+                }
+            }
+
+        }
+        static void zad44_dwojka()
+        {
+            Console.WriteLine("Podaj liczbę: ");
+            int x = Convert.ToInt32(Console.ReadLine());
+            int n = 0;
+            while (x % 2 == 0)
+            {
+                x = x / 2;
+                n++;
+            }
+            if (x == 1)
+            {
+                Console.WriteLine($"Podana liczba to 2^{n}");
+            }
+            else
+            {
+                Console.WriteLine($"Podanej liczby nie można przedstawić w postaci potęgi liczby 2");
+            }
+            
+        }
         static void zad45_nwd()
         {
             Console.Write("Podaj liczbę a: ");
@@ -59,30 +108,54 @@
             Console.Write($"NWD wynosi {a}");
         }
 
-        static void zad43_los()
+        static void zad46_pi()
         {
-            Random rnd = new Random();
-            int licznik = 1;
-            int x = rnd.Next(2, 10);
-            Console.WriteLine("Zgadnij liczbę: ");
-            while(true)
+            Console.Write("Podaj dokładność d: ");
+            double d = Convert.ToDouble(Console.ReadLine());
+            double pi = 0, aktualny_ulamek = 1D;
+            double i = 1D;
+            int n = 0;
+            while (aktualny_ulamek > d)
             {
-                int a = Convert.ToInt32(Console.ReadLine());
-                if (a < x)
+                if (n % 2 == 0)
                 {
-                    Console.WriteLine("Za mało!");
-                    licznik++;
-                }
-                else if (a > x)
-                {
-                    Console.WriteLine("Za dużo!");
-                    licznik++;
+                    pi += 1 / i;
                 }
                 else
                 {
-                    Console.Write($"Dobrze! Zgadłeś za {licznik} razem");
-                    break;
+                    pi -= 1 / i;
                 }
+                i += 2;
+                n++;
+                aktualny_ulamek = 1 / i;
+            }
+            Console.WriteLine($"Liczba pi z przybliżeniem do {d} to: {pi * 4}");
+        }
+
+        static void zad47_doskonala()
+        {
+            Console.WriteLine("Podaj liczbę: ");
+            int a = Convert.ToInt32(Console.ReadLine());
+            int suma = 0;
+            int i = 1;
+            Console.WriteLine($"Dzielniki liczby {a}:");
+            while (suma<a)
+            {
+                if (a % i == 0)
+                {
+                    suma = suma + i;
+                    Console.WriteLine($"{i}");
+                }
+                i++;
+            }
+            Console.WriteLine($"Suma powyższych dzielników = {suma}");
+            if (suma == a)
+            {
+                Console.Write($"{suma} = {a} zatem liczba {a} jest doskonała");
+            }
+            else
+            {
+                Console.Write($"{suma} =/= {a} zatem iczba {a} nie jest doskonała");
             }
         }
 
@@ -91,7 +164,10 @@
             //zad41_srednia();
             //zad42_lokata();
             //zad43_los();
+            //zad44_dwojka();
             //zad45_nwd();
+            //zad46_pi();
+            //zad47_doskonala();
         }
     }
 }
